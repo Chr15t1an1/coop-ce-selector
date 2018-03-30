@@ -133,7 +133,7 @@ $('#select-to').selectize({
                 name  : $.trim(match[1])
             };
         }
-        alert('Invalid state address.');
+        alert('Invalid state');
         return false;
     }
 });
@@ -144,8 +144,10 @@ $('#select-to').selectize({
 
 <script>
 $( "#target" ).submit(function( event ) {
-  console.log($('#select-to').val());
   event.preventDefault();
+  processForm($('#select-to').val());
+  addStateCE(userRequirements);
+  // sevenOrEight();
 });
 
 </script>
