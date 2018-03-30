@@ -1,0 +1,151 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="select.css" rel="stylesheet">
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <script src="sifter.js"></script>
+  <script src="statedata.js"></script>
+
+  <script src="ce_logic.js"></script>
+
+
+  <form id="target" method="POST" enctype="" action="">
+          <select id="select-to" name="select_multiple_numbers" multiple="multiple">
+          </select>
+          <input type="submit">
+ </form>
+
+
+
+
+
+
+<!-- //Select Search -->
+<script>
+var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                  '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+$('#select-to').selectize({
+    persist: false,
+    maxItems: null,
+    valueField: 'state',
+    labelField: 'name',
+    searchField: ['name', 'state'],
+    // options: [
+    //     {email: 'brian@thirdroute.com'},
+    //     {email: 'nikola@tesla.com'},
+    //     {email: 'someone@gmail.com'}
+    // ],
+    options: [
+        {state: 'Alabama'},
+        {state: 'Alaska'},
+        {state: 'Arizona'},
+        {state: 'Arkansas'},
+        {state: 'California'},
+        {state: 'Colorado'},
+        {state: 'Connecticut'},
+        {state: 'Delaware'},
+        {state: 'District Of Columbia'},
+        {state: 'Florida'},
+        {state: 'Georgia'},
+        {state: 'Hawaii'},
+        {state: 'Idaho'},
+        {state: 'Illinois'},
+        {state: 'Indiana'},
+        {state: 'Iowa'},
+        {state: 'Kansas'},
+        {state: 'Kentucky'},
+        {state: 'Louisiana'},
+        {state: 'Maine'},
+        {state: 'Maryland'},
+        {state: 'Massachusetts'},
+        {state: 'Michigan'},
+        {state: 'Minnesota'},
+        {state: 'Mississippi'},
+        {state: 'Missouri'},
+        {state: 'Montana'},
+        {state: 'Nebraska'},
+        {state: 'Nevada'},
+        {state: 'New Hampshire'},
+        {state: 'New Jersey'},
+        {state: 'New Mexico'},
+        {state: 'New York'},
+        {state: 'North Carolina'},
+        {state: 'North Dakota'},
+        {state: 'Ohio'},
+        {state: 'Oklahoma'},
+        {state: 'Oregon'},
+        {state: 'Pennsylvania'},
+        {state: 'Rhode Island'},
+        {state: 'South Carolina'},
+        {state: 'South Dakota'},
+        {state: 'Tennessee'},
+        {state: 'Texas'},
+        {state: 'Utah'},
+        {state: 'Vermont'},
+        {state: 'Virginia'},
+        {state: 'Washington'},
+        {state: 'West Virginia'},
+        {state: 'Wisconsin'},
+        {state: 'Wyomin'},
+    ],
+    render: {
+        item: function(item, escape) {
+            return '<div>' +
+                (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                (item.state ? '<span class="state">' + escape(item.state) + '</span>' : '') +
+            '</div>';
+        },
+        option: function(item, escape) {
+            var label = item.name || item.state;
+            var caption = item.name ? item.state : null;
+            return '<div>' +
+                '<span class="label">' + escape(label) + '</span>' +
+                (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+            '</div>';
+        }
+    },
+    createFilter: function(input) {
+        var match, regex;
+
+        // email@address.com
+        regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+        match = input.match(regex);
+        if (match) return !this.options.hasOwnProperty(match[0]);
+
+        // name <email@address.com>
+        regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+        match = input.match(regex);
+        if (match) return !this.options.hasOwnProperty(match[2]);
+
+        return false;
+    },
+    create: function(input) {
+        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+            return {state: input};
+        }
+        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+        if (match) {
+            return {
+                state : match[2],
+                name  : $.trim(match[1])
+            };
+        }
+        alert('Invalid state address.');
+        return false;
+    }
+});
+
+</script>
+
+
+
+<script>
+$( "#target" ).submit(function( event ) {
+  console.log($('#select-to').val());
+  event.preventDefault();
+});
+
+</script>
