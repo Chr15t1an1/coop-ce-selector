@@ -19,6 +19,7 @@ userPost = thePost;
 reversedStateMap = swap(stateMap);
   // take in post data and grab all of the requirements
   Object.keys(thePost).forEach(function(key) {
+    // console.log('a');
  userRequirements.push(requirements[reversedStateMap[thePost[key]]]);
   });
   maxHours = getUserRequiredHours(userRequirements);
@@ -39,7 +40,7 @@ function addStateCE(usrRequirements) {
   Object.keys(usrRequirements).forEach(function(key) {
 
   if (allCourses[usrRequirements[key]['stateCE']]) {
-  console.log(usrRequirements[key]['stateCE']);
+  // console.log(usrRequirements[key]['stateCE']);
   cart.push(allCourses[usrRequirements[key]['stateCE']]);
   }
   });
@@ -50,35 +51,32 @@ function addStateCE(usrRequirements) {
 function countHoursInCart() {
 }
 
-function isEightHourRequired(usersRequirements){
-Object.keys(usersRequirements).forEach(function(key) {
-  console.log(key);
+function isEightHourRequired(requirements){
+// Object.keys(usersRequirements).forEach(function(key) {
+  console.log(requirements);
+  // console.log(usersRequirements[key]);
+  // console.log(usersRequirements[0]);
 
-  console.log(usersRequirements[key]);
+  for (var i = 0; i < requirements.length; i++) {
 
+  if(requirements[i].require8Hr){
 
-  if(usersRequirements[key]['require8Hr']){
-    console.log('true');
-  //  return true;
+   return true;
   }
-});
-
-console.log('false');
-
-
-//return false;
+  }
+// return false;
 }
 
 
-
-
 // Grab Form data and
-function addRemainingHours(json){
-
+function addRemainingHours(reqs){
+if (isEightHourRequired(reqs)) {
+  console.log('add to cart');
+}
 
   // console.log(userRequirements);
-  console.log(minrequiredHours);
-  console.log(cart);
+  // console.log(minrequiredHours);
+  // console.log(cart);
 
     }
 
