@@ -37,11 +37,53 @@ temp_hours_array.push(userRequirements[key]['requiredHours']);
 
 function addStateCE(usrRequirements) {
   Object.keys(usrRequirements).forEach(function(key) {
-  // console.log(usrRequirements[key]['stateCE']);
 
-  cart = allCourses[usrRequirements[key]['stateCE']]
+  if (allCourses[usrRequirements[key]['stateCE']]) {
+  console.log(usrRequirements[key]['stateCE']);
+  cart.push(allCourses[usrRequirements[key]['stateCE']]);
+  }
   });
   }
+
+
+
+function countHoursInCart() {
+}
+
+function isEightHourRequired(usersRequirements){
+Object.keys(usersRequirements).forEach(function(key) {
+  console.log(key);
+
+  console.log(usersRequirements[key]);
+
+
+  if(usersRequirements[key]['require8Hr']){
+    console.log('true');
+  //  return true;
+  }
+});
+
+console.log('false');
+
+
+//return false;
+}
+
+
+
+
+// Grab Form data and
+function addRemainingHours(json){
+
+
+  // console.log(userRequirements);
+  console.log(minrequiredHours);
+  console.log(cart);
+
+    }
+
+
+
 
 
 
