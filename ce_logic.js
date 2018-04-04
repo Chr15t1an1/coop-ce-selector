@@ -70,9 +70,56 @@ function isEightHourRequired(requirements){
   }
 }
 
+function pruneDuplicates(cart){
+  var cleanCartnewArray = [];
+   var lookupObject  = {};
+
+   for(var i in cart) {
+      lookupObject[cart[i]['variantId']] = cart[i];
+   }
+
+   for(i in lookupObject) {
+       cleanCartnewArray.push(lookupObject[i]);
+   }
+    return cleanCartnewArray;
+
+}
+
+  // console.log(Kart);
+  // var i, len;
+  //
+  // for (i = 0, len = cart.length; i < len; i++) {
+  //   if (parseInt(cart[i]['hours']) > 7) {
+  //     return true;
+  //   }
+  // }
+  //
+  // return false;
+
+// function removeDuplicates(originalArray, prop) {
+//      var newArray = [];
+//      var lookupObject  = {};
+//
+//      for(var i in originalArray) {
+//         lookupObject[originalArray[i][prop]] = originalArray[i];
+//      }
+//
+//      for(i in lookupObject) {
+//          newArray.push(lookupObject[i]);
+//      }
+//       return newArray;
+//  }
+
+
+
+
+
+
 
 // Grab Form data and
 function addRemainingHours(reqs){
+
+
 if (isEightHourRequired(reqs)) {
   // console.log('add 8 hour to cart');
   cart.push(allCourses['8hr']);
@@ -80,6 +127,7 @@ if (isEightHourRequired(reqs)) {
 // }else {
 //   cart.push(allCourses['7hr']);
 // }
+cart = pruneDuplicates(cart);
 
 // Need to process
 hoursInCart = countHoursInCart(cart);
@@ -104,7 +152,10 @@ hoursInCart = countHoursInCart(cart);
         cart.push(allCourses['7hr']);
         addRemainingHours(userRequirements);
       }else {
-        console.log('More Form | Need '+ hoursRemaining + ' more hours');
+        console.log('More Form | Need '+ hoursRemaining + ' more hours. Adding pensilvanya and Maryland');
+        cart.push(allCourses['1pa']);
+        cart.push(allCourses['1md']);
+        addRemainingHours(userRequirements);
       }
   }
 
