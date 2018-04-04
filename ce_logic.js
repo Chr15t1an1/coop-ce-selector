@@ -76,37 +76,53 @@ function addRemainingHours(reqs){
 if (isEightHourRequired(reqs)) {
   // console.log('add 8 hour to cart');
   cart.push(allCourses['8hr']);
-}else {
-  cart.push(allCourses['7hr']);
 }
+// }else {
+//   cart.push(allCourses['7hr']);
+// }
 
 // Need to process
 hoursInCart = countHoursInCart(cart);
-
   // console.log(userRequirements);
-  console.log(minrequiredHours);
-  console.log(hoursInCart);
+  // console.log(minrequiredHours);
+  // console.log(hoursInCart);
 
   var hoursRemaining = minrequiredHours - hoursInCart;
 
-
-  if (hoursInCart >= minrequiredHours) {
-    console.log('add products to cart');
-  }else if (hoursRemaining === 8) {
-    console.log('add 8 hour to cart');
-    addRemainingHours(userRequirements);
-  }else if (hoursRemaining === 7) {
-    console.log('add 7 hour to cart');
-    addRemainingHours(userRequirements);
-  }else {
-    console.log('More Form | Need '+hoursRemaining + ' more hours');
+      if (hoursInCart >= minrequiredHours) {
+        console.log('add products to cart');
+      }else if (hoursRemaining === 8) {
+        console.log('add 8 hour to cart');
+        cart.push(allCourses['8hr']);
+        addRemainingHours(userRequirements);
+      }else if (hoursRemaining === 7) {
+        console.log('add 7 hour to cart');
+        cart.push(allCourses['7hr']);
+        addRemainingHours(userRequirements);
+      }else if (!fedInCart()) {
+        console.log('Federal Not in Cart');
+        cart.push(allCourses['7hr']);
+        addRemainingHours(userRequirements);
+      }else {
+        console.log('More Form | Need '+ hoursRemaining + ' more hours');
+      }
   }
 
 
+function fedInCart() {
+  // console.log(Kart);
+  var i, len;
 
+  for (i = 0, len = cart.length; i < len; i++) {
+    if (parseInt(cart[i]['hours']) > 7) {
+      return true;
     }
+  }
+
+  return false;
 
 
+}
 
 
 
