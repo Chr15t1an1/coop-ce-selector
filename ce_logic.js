@@ -48,35 +48,61 @@ function addStateCE(usrRequirements) {
 
 
 
-function countHoursInCart() {
+function countHoursInCart(Kart) {
+  // console.log(Kart);
+  var i, len;
+  var totalHours = 0;
+  for (i = 0, len = cart.length; i < len; i++) {
+    //  text += cart[i] + "<br>";
+      // console.log(cart[i]['hours']);
+      totalHours=totalHours+parseInt(cart[i]['hours']);
+  }
+
+return totalHours;
+
 }
 
 function isEightHourRequired(requirements){
-// Object.keys(usersRequirements).forEach(function(key) {
-  console.log(requirements);
-  // console.log(usersRequirements[key]);
-  // console.log(usersRequirements[0]);
-
   for (var i = 0; i < requirements.length; i++) {
-
   if(requirements[i].require8Hr){
-
    return true;
   }
   }
-// return false;
 }
 
 
 // Grab Form data and
 function addRemainingHours(reqs){
 if (isEightHourRequired(reqs)) {
-  console.log('add to cart');
+  // console.log('add 8 hour to cart');
+  cart.push(allCourses['8hr']);
+}else {
+  cart.push(allCourses['7hr']);
 }
 
+// Need to process
+hoursInCart = countHoursInCart(cart);
+
   // console.log(userRequirements);
-  // console.log(minrequiredHours);
-  // console.log(cart);
+  console.log(minrequiredHours);
+  console.log(hoursInCart);
+
+  var hoursRemaining = minrequiredHours - hoursInCart;
+
+
+  if (hoursInCart >= minrequiredHours) {
+    console.log('add products to cart');
+  }else if (hoursRemaining === 8) {
+    console.log('add 8 hour to cart');
+    addRemainingHours(userRequirements);
+  }else if (hoursRemaining === 7) {
+    console.log('add 7 hour to cart');
+    addRemainingHours(userRequirements);
+  }else {
+    console.log('More Form | Need '+hoursRemaining + ' more hours');
+  }
+
+
 
     }
 

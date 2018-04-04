@@ -190,10 +190,12 @@ const allCourses = {
     '8hr': {
         name: '8 Hour Core SAFE Online CE',
         variantId: 23491638849,
+        hours: 8
     },
     '7hr': {
         name: '7 Hour Core SAFE Online CE',
         variantId: 23491539329,
+        hours: 7
     },
 
     /* '2ms': {
