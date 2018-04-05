@@ -1,21 +1,17 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="select.css" rel="stylesheet">
-
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-
   <script src="sifter.js"></script>
   <script src="statedata.js"></script>
-
   <script src="ce_logic.js"></script>
-
-
+<a onclick="location.reload();">Clear</a>
   <form id="target" method="POST" enctype="" action="">
           <select id="select-to" name="select_multiple_numbers" multiple="multiple">
           </select>
-          <input type="submit">
+          <input id="formSubmit" type="submit">
  </form>
 
 
@@ -25,6 +21,17 @@
 
 <!-- //Select Search -->
 <script>
+
+// Button disabled by default
+$('#formSubmit').prop('disabled',true);
+
+$('#target').on('change', function () {
+    $('#formSubmit').prop('disabled',false);
+});
+
+
+
+
 var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
                   '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 $('#select-to').selectize({
@@ -90,6 +97,7 @@ $('#select-to').selectize({
         {state: 'West Virginia'},
         {state: 'Wisconsin'},
         {state: 'Wyoming'},
+        {state: 'Puerto Rico'}
     ],
     render: {
         item: function(item, escape) {

@@ -50,7 +50,8 @@ const stateMap = {
     WA: 'Washington',
     WV: 'West Virginia',
     WI: 'Wisconsin',
-    WY: 'Wyoming'
+    WY: 'Wyoming',
+    PR:'Puerto Rico'
 }
 
 
@@ -116,7 +117,8 @@ const requirements = {
     VT: {stateCE:'',requiredHours:8,require8Hr:false},
     VA: {stateCE:'',requiredHours:8,require8Hr:false},
     WI: {stateCE:'',requiredHours:8,require8Hr:false},
-    WY: {stateCE:'',requiredHours:8,require8Hr:false}
+    WY: {stateCE:'',requiredHours:8,require8Hr:false},
+    PR: {stateCE:'',requiredHours:8,require8Hr:false}
 }
 
 

@@ -128,13 +128,11 @@ if (isEightHourRequired(reqs)) {
 //   cart.push(allCourses['7hr']);
 // }
 cart = pruneDuplicates(cart);
-
 // Need to process
 hoursInCart = countHoursInCart(cart);
   // console.log(userRequirements);
   // console.log(minrequiredHours);
   // console.log(hoursInCart);
-
   var hoursRemaining = minrequiredHours - hoursInCart;
 
       if (hoursInCart >= minrequiredHours) {
