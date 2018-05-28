@@ -33,12 +33,20 @@
 
 <script>
 
-function printClasses(){
-for (i = 0, len = cart.length; i < len; i++) {
+function printCourse(){
+$('#course-ul').html('');
+for (i = 0, len = cart.length+1; i < len; i++) {
   //  text += cart[i] + "<br>";
+  try {
   console.log(cart[i]['name']);
-    var name = cart[i]['name'];
-    $('#course-ul').html('<li>'+name+'</li>');
+    name = cart[i]['name'];
+    $('#course-ul').append('<li>'+name+'</li>');
+}
+  catch(error) {
+    console.error(error);
+    // expected output: SyntaxError: unterminated string literal
+    // Note - error messages will vary depending on browser
+  }
 }
 }
 </script>
@@ -179,7 +187,7 @@ $( "#target" ).submit(function( event ) {
   processForm($('#select-to').val());
   addStateCE(userRequirements);
   addRemainingHours(userRequirements);
-  printClasses();
+  printCourse();
 });
 
 </script>
