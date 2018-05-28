@@ -7,6 +7,7 @@
   <script src="sifter.js"></script>
   <script src="statedata.js"></script>
   <script src="ce_logic.js"></script>
+
 <a onclick="location.reload();">Clear</a>
   <form id="target" method="POST" enctype="" action="">
           <select id="select-to" name="select_multiple_numbers" multiple="multiple">
@@ -14,12 +15,34 @@
           <input id="formSubmit" type="submit">
  </form>
 
+<div id="course-container">
+<ul id="course-ul">
+</ul>
+</div>
+
+
+
+
+
 
 
 
 
 
 <!-- //Select Search -->
+
+<script>
+
+function printClasses(){
+for (i = 0, len = cart.length; i < len; i++) {
+  //  text += cart[i] + "<br>";
+  console.log(cart[i]['name']);
+    var name = cart[i]['name'];
+    $('#course-ul').html('<li>'+name+'</li>');
+}
+}
+</script>
+
 <script>
 
 // Button disabled by default
@@ -156,6 +179,7 @@ $( "#target" ).submit(function( event ) {
   processForm($('#select-to').val());
   addStateCE(userRequirements);
   addRemainingHours(userRequirements);
+  printClasses();
 });
 
 </script>
